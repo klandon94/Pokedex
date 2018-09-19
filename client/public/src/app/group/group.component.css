@@ -1,0 +1,23 @@
+.box{
+    border-bottom: 2px solid red;
+    margin-bottom:50px;
+}
+
+.title{
+    border: 1px solid black;
+    width:10%;
+}
+
+.pokemonstuff{
+    justify-content: space-around;
+    display:flex;
+}
+
+.pokes{
+    justify-content:space-around;
+    display:flex;
+}
+
+.single{
+    margin-right: 10px;
+}

@@ -1,0 +1,30 @@
+<div class="box">
+  <h4 class="title">User: {{group.user}}</h4>
+  <div class="pokemonstuff">
+    <div>
+      <form (submit)="createPokemon(newPokemon.name)" class="form-horizontal">
+        <div class="form-group">
+          <label for="name">Add pokemon:</label>
+          <div *ngIf = "errors">
+            <div *ngFor="let err of errors">
+              <p class="error">{{err}}</p>
+            </div>
+          </div>
+          <input type="text" class="form-control" placeholder="Pokemon name" [(ngModel)] = "newPokemon.name" name = "newPokemon.name" id="name">
+        </div>
+        <button type="submit" class="btn btn-success">Create</button>
+      </form>
+    </div>
+    <div>
+      <h4 class="center">My pokemon</h4>
+      <div class="pokes">
+        <div *ngFor = "let poke of allPokemon">
+          <img class="single" src="https://pokeapi.co/media/img/{{poke.number}}.png">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <a [routerLink] = "['/products', 'edit', product._id]">Edit</a>
+<button (click)="deleteProduct(product._id)">Delete</button> -->
