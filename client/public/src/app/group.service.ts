@@ -6,27 +6,22 @@ import { HttpClient } from '../../node_modules/@angular/common/http';
 })
 export class GroupService {
 
-  private listeners = [];
-
   constructor(private http: HttpClient) { }
 
-  attach(component){
-    this.listeners.push(component);
-  }
-  notify(){
-    for (let listener of this.listeners) listener.update();
-  }
-
-  allGroups(){
+  all(){
     return this.http.get("/api/groups")
   }
 
-  getGroup(id){
+  get(id){
     return this.http.get("/api/groups/" + id);
   }
 
-  addGroup(newGroup){
+  add(newGroup){
     return this.http.post("/api/groups", newGroup);
+  }
+
+  delete(id){
+    return this.http.delete("/api/groups/" + id);
   }
 
 }

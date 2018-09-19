@@ -1,5 +1,7 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { PokemonService } from '../pokemon.service';
+import { GroupService } from '../group.service';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-group',
@@ -9,12 +11,13 @@ import { PokemonService } from '../pokemon.service';
 export class GroupComponent implements OnInit {
 
   @Input() group;
+  @Output() deleteGroupEmitter = new EventEmitter();
 
   private newPokemon: any;
-  allPokemon: any;
+  private allPokemon: any;
   private errors: any;
 
-  constructor(private ps: PokemonService) { this.init(); }
+  constructor(private ps: PokemonService, private gs: GroupService, private router: Router) { this.init(); }
 
   init(){
     this.newPokemon = {name:"", weight:"", number:0, abilities:[]};
@@ -26,7 +29,7 @@ export class GroupComponent implements OnInit {
   }
 
   getPokemonsFromService(){
-    this.ps.allPokemons(this.group._id).subscribe(data => {
+    this.ps.all(this.group._id).subscribe(data => {
       this.allPokemon = data;
     })
   }
@@ -44,7 +47,7 @@ export class GroupComponent implements OnInit {
         this.newPokemon.weight = data['weight'];
         this.newPokemon.number = data['id'];
         for (let i = 0; i < data['abilities'].length; i++) this.newPokemon.abilities.push(data['abilities'][i].ability.name);
-        this.ps.addPokemon(this.group._id, this.newPokemon).subscribe(data => {
+        this.ps.add(this.group._id, this.newPokemon).subscribe(data => {
           if (data['message'] || data['errors']){
             this.errors = [];
             this.errors.push(data['message']);
@@ -61,6 +64,20 @@ export class GroupComponent implements OnInit {
         this.errors.push("Name not valid");
       }
     )
+  }
+
+  // Added ability to delete pokemon from the homepage by clicking on the font-awesome icon, shortcut for going to the pokemon's individual page
+  deletePokemon(id){
+    this.ps.delete(id).subscribe(data => {
+      let index = this.allPokemon.map(i => {return i._id}).indexOf(data['_id']);
+      this.allPokemon.splice(index, 1);
+    })
+  }
+
+  deleteGroup(id){
+    this.gs.delete(id).subscribe(data => {
+      this.deleteGroupEmitter.emit(data);
+    })
   }
 
 }

@@ -9,9 +9,9 @@ import { AppComponent } from './app.component';
 import { GroupsComponent } from './groups/groups.component';
 import { PokemonComponent } from './pokemon/pokemon.component';
 import { GroupComponent } from './group/group.component';
-import { EditPokemonComponent } from './edit-pokemon/edit-pokemon.component';
 import { PokemonService } from './pokemon.service';
 import { GroupService } from './group.service';
+import { NewGroupComponent } from './new-group/new-group.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +19,7 @@ import { GroupService } from './group.service';
     GroupsComponent,
     PokemonComponent,
     GroupComponent,
-    EditPokemonComponent
+    NewGroupComponent
   ],
   imports: [
     BrowserModule,

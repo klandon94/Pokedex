@@ -1,3 +1,4 @@
-#makeGroup{
-    margin-left:20px;
+#links{
+    display:flex;
+    justify-content:space-around;
 }

@@ -16,15 +16,14 @@
       </form>
     </div>
     <div>
-      <h4 class="center">My pokemon</h4>
+      <h4 class="center">My pokemon (click on image for more info!)</h4>
       <div class="pokes">
         <div *ngFor = "let poke of allPokemon">
-          <img class="single" src="https://pokeapi.co/media/img/{{poke.number}}.png">
+          <a (click)= "deletePokemon(poke._id)"><i class="fas fa-minus-circle"></i></a>
+          <a [routerLink] = "['/pokemon', poke._id]"><img class="single" src="http://pokeapi.co/media/img/{{poke.number}}.png/"></a>
         </div>
       </div>
     </div>
   </div>
+  <button (click) = "deleteGroup(group._id)" class="btn btn-danger">Delete group</button>
 </div>
-
-<!-- <a [routerLink] = "['/products', 'edit', product._id]">Edit</a>
-<button (click)="deleteProduct(product._id)">Delete</button> -->

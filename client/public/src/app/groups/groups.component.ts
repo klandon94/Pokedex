@@ -14,17 +14,17 @@ export class GroupsComponent implements OnInit {
 
   ngOnInit() {
     this.getGroupsFromService();
-    this.gs.attach(this);
   }
 
   getGroupsFromService() {
-    this.gs.allGroups().subscribe(data => {
+    this.gs.all().subscribe(data => {
       this.groups = data;
     })
   }
 
-  update() {
-    this.getGroupsFromService();
+  deleteGroup(group){
+    let index = this.groups.map(i => {return i._id}).indexOf(group._id);
+    this.groups.splice(index, 1);
   }
-
+  
 }

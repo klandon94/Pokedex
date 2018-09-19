@@ -32,6 +32,16 @@ class GroupController {
             return res.json(group);
         })
     }
+
+    destroy(req, res) {
+        Group.findOne({_id:req.params.id}, (err, group) => {
+            if (!group) return res.json(err);
+            Group.deleteOne({_id:req.params.id}, err => {
+                if (err) return res.json(err);
+                return res.json(group);
+            })
+        })
+    }
 }
 
 module.exports = new GroupController();

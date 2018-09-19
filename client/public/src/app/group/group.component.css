@@ -1,5 +1,5 @@
 .box{
-    border-bottom: 2px solid red;
+    border-bottom: 5px solid darkgoldenrod;
     margin-bottom:50px;
 }
 
@@ -20,4 +20,9 @@
 
 .single{
     margin-right: 10px;
+}
+
+i{
+    cursor:pointer;
+    color:red;
 }

@@ -1,3 +1,38 @@
-<p>
-  pokemon works!
-</p>
+<div *ngIf="pokemon">
+  <img src="https://pokeapi.co/media/img/{{pokemon.number}}.png/">
+  <div id="info">
+    <h4>Name: {{pokemon.name | uppercase}}</h4>
+    <h4>Weight: {{pokemon.weight}} pounds</h4>
+    <h4>Abilities:</h4>
+    <li *ngFor="let ability of pokemon.abilities" class="list-unstyled">
+      {{ability | uppercase}}
+    </li>
+  </div>
+  <br>
+  <button (click)="editOn()" class="btn btn-primary">Edit pokemon</button>
+  <button (click)="deletePokemon(pokemon._id)" class="btn btn-danger delete">Delete pokemon</button>
+</div>
+
+<div *ngIf="edit" id="editer">
+  <h3>Update {{pokemon.name}}</h3>
+  <div *ngIf="errors">
+    <p *ngFor="let err of errors" class="error">{{err}}</p>
+  </div>
+  <form (submit)="updatePokemon(pokemon._id)">
+    <div class="form-group">
+      <label for="">Name:</label>
+      <input type="text" class="form-control" name="editPoke.name" [(ngModel)]="editPoke.name" value="{{pokemon.name}}">
+    </div>
+    <div class="form-group">
+      <label for="">Weight:</label>
+      <input type="number" class="form-control" name="editPoke.weight" [(ngModel)]="editPoke.weight" value="{{pokemon.weight}}">
+    </div>
+    <div class="form-group">
+      <label for="">Abilities:</label>
+      <input type="text" class="form-control" name="editPoke.abilities" [(ngModel)]="editPoke.abilities" value="{{pokemon.abilities}}">
+    </div>
+    <div class="form-group">
+      <button type="submit" class="btn btn-danger">Update</button>
+    </div>
+  </form>
+</div>

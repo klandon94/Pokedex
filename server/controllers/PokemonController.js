@@ -62,10 +62,17 @@ class PokemonController {
 
     destroy(req,res) {
         Pokemon.findOne({_id:req.params.id}, (err,pokemon) => {
-            if (!pokemon) return res.json(err);
+            let groupid = pokemon.group;
+            let pokeid = pokemon._id;
             Pokemon.remove({_id:req.params.id}, err => {
                 if (err) return res.json(err);
-                return res.json(pokemon);
+                Group.findOne({_id:groupid}, (err, group) => {
+                    if (err) return res.json(err);
+                    let index = group.pokemons.map(i => {return i._id}).indexOf(pokeid);
+                    group.pokemons.splice(index, 1);
+                    group.save(err => 
+                        {return res.json(group);});
+                })
             })
         })
     }

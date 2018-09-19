@@ -7,8 +7,9 @@ module.exports = app => {
     app.get("/api/groups", GroupController.all);
     app.get("/api/groups/:id", GroupController.findById);
     app.post("/api/groups", GroupController.create);
+    app.delete("/api/groups/:id", GroupController.destroy)
     // PokemonController
-    app.get("/api/pokemons/:gid", PokemonController.all);
+    app.get("/api/allpokemons/:gid", PokemonController.all);
 	app.post("/api/pokemons/:gid", PokemonController.create);
 	app.get("/api/pokemons/:id", PokemonController.findById);
 	app.patch("/api/pokemons/:id", PokemonController.update);

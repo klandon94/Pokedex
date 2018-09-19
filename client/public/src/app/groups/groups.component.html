@@ -1,5 +1,5 @@
 <h2 class="center">Group List</h2>
 
 <div *ngIf="groups">
-  <app-group *ngFor="let group of groups" [group]="group" (groupEmitter) = "getGroupsFromService()"></app-group>
+  <app-group *ngFor="let group of groups" [group]="group" (deleteGroupEmitter)="deleteGroup($event)"></app-group>
 </div>

@@ -1,0 +1,15 @@
+<h2>Create a new group</h2>
+<div *ngFor="let err of errors">
+  <p class="error">{{err}}</p>
+</div>
+<form (submit)="createGroup()" class="form-horizontal" id="makeGroup">
+  <div class="form-group">
+    <div class="col-sm-5">
+      <label for="user">User name:</label>
+      <input type="text" class="form-control" placeholder="User" [(ngModel)]="newGroup.user" name="newGroup.user" id="user">
+    </div>
+  </div>
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary">Create Group</button>
+  </div>
+</form>
