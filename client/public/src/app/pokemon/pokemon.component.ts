@@ -36,10 +36,14 @@ export class PokemonComponent implements OnInit {
     })
   }
 
+  // Displays the edit pokemon box on the right of the screen
   editOn(){
     this.edit = true;
   }
 
+  // Because the pokemon abilities attribute is an array of Strings, first checks whether the amount of abilities was altered
+  // (if not, then the editPoke.abilities attribute is left unchanged). If there is only one ability entered, then the last
+  // ability is removed (since splitting by the "," creates an empty second element)
   updatePokemon(id){
     if (this.editPoke.abilities.length !== this.numabilities){
       this.editPoke.abilities = this.editPoke.abilities.split(",")
@@ -57,7 +61,6 @@ export class PokemonComponent implements OnInit {
 
   deletePokemon(id){
     this.ps.delete(id).subscribe(data => {
-      // console.log(data);
       this.router.navigateByUrl("/");
     })
   }

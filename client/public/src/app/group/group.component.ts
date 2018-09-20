@@ -34,6 +34,8 @@ export class GroupComponent implements OnInit {
     })
   }
 
+  // Creates a pokemon based on what is typed into the textbox. If it is left blank, the user is prompted to
+  // enter a name. If the pokemon service throws an error, then the input string must not be within the pokeapi dataset
   createPokemon(str){
     if (!str) {
       this.errors = [];
@@ -68,12 +70,13 @@ export class GroupComponent implements OnInit {
 
   // Added ability to delete pokemon from the homepage by clicking on the font-awesome icon, shortcut for going to the pokemon's individual page
   deletePokemon(id){
+    let index = this.allPokemon.map(i => {return i._id}).indexOf(id);
     this.ps.delete(id).subscribe(data => {
-      let index = this.allPokemon.map(i => {return i._id}).indexOf(data['_id']);
       this.allPokemon.splice(index, 1);
     })
   }
 
+  // Uses EventEmitter to send group to be deleted to parent component (GroupsComponent)
   deleteGroup(id){
     this.gs.delete(id).subscribe(data => {
       this.deleteGroupEmitter.emit(data);

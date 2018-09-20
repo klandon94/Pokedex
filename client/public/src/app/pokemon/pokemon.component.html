@@ -5,7 +5,7 @@
     <h4>Weight: {{pokemon.weight}} pounds</h4>
     <h4>Abilities:</h4>
     <li *ngFor="let ability of pokemon.abilities" class="list-unstyled">
-      {{ability | uppercase}}
+      <span class="ability">{{ability | uppercase}}</span>
     </li>
   </div>
   <br>

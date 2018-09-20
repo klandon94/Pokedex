@@ -18,3 +18,11 @@ img{
 .delete{
     margin-left:20px;
 }
+
+.ability{
+    font-size:20px;
+    font-style:italic;
+    font-weight:bold;
+    margin-left:20px;
+    color: darkgreen;
+}
