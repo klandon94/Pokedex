@@ -11,12 +11,12 @@ let GroupSchema = new mongoose.Schema({
             type: Schema.Types.ObjectId,
             ref: 'Pokemon'
         }],
-        validate: [length, 'Can only have 5 pokemon']
+        validate: [length, 'Can only have 6 pokemon']
     }
 });
 
 function length(val){
-    return val.length <= 5;
+    return val.length <= 6;
 }
 
 var Group = mongoose.model("Group", GroupSchema);

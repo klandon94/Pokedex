@@ -21,7 +21,7 @@
         <div *ngFor = "let poke of allPokemon">
           <div>
             <a (click)= "deletePokemon(poke._id)"><i class="fas fa-minus-circle"></i></a>
-            <a [routerLink] = "['/pokemon', poke._id]"><img class="single" src="http://pokeapi.co/media/img/{{poke.number}}.png/"></a>
+            <a [routerLink] = "['/pokemon', poke._id]"><img class="single" src="https://pokeapi.co/media/img/{{poke.number}}.png/"></a>
           </div>
         </div>
       </div>
